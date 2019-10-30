@@ -5,7 +5,6 @@ import "github.com/0daryo/monkey/token"
 // The base Node interface
 type Node interface {
 	TokenLiteral() string
-	String() string
 }
 
 // All statement nodes implement this
