@@ -15,7 +15,7 @@ func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
 
 	for {
-		fmt.Printf(PROMPT)
+		fmt.Printf(PROMPT) // nolint: staticcheck
 		scanned := scanner.Scan()
 		if !scanned {
 			return

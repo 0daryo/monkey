@@ -133,7 +133,7 @@ type PrefixExpression struct {
 }
 
 func (pe *PrefixExpression) expressionNode()      {}
-func (pe *PrefixExpression) TokenLiteral() string { return pe.TokenLiteral() }
+func (pe *PrefixExpression) TokenLiteral() string { return pe.Token.Literal }
 func (pe *PrefixExpression) String() string {
 	var out bytes.Buffer
 	out.WriteString("(")
