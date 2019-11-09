@@ -1,8 +1,6 @@
 package lexer
 
 import (
-	"fmt"
-
 	"github.com/0daryo/monkey/token"
 )
 
@@ -15,9 +13,7 @@ type Lexer struct {
 
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
-	fmt.Printf("%v", l)
 	l.readChar()
-	fmt.Printf("%v", l)
 	return l
 }
 
@@ -43,7 +39,6 @@ func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
 
 	l.skipWhitespace()
-	fmt.Println(string(l.ch))
 	switch l.ch {
 	case '=':
 		if l.peekChar() == '=' {
