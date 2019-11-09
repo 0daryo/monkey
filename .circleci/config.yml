@@ -23,14 +23,14 @@ jobs:
       GOCACHE: /.cache/go-build
       GO111MODULE: "on"
     docker:
-      - image: circleci/golang:<< parameters.go-version >>
+      - image: golang:1.13
     steps:
       - checkout
       - go_mod_download
 
       - run:
           name: Install GolangCI-Lint
-          command: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v<< parameters.golangci-lint-version >>
+          command: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v1.18.0
 
       - run:
           name: Run GolangCI-Lint
@@ -42,6 +42,4 @@ jobs:
 workflows:
   golang-workflow:
     jobs:
-      - build:
-          go-version: "1.13.0"
-          golangci-lint-version: "1.18.0"
+      - build
