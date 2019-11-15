@@ -3,7 +3,7 @@ executors:
   default:
     docker:
       - image: golang:1.13
-    working_directory: /workspace
+    working_directory: /go/src/github.com/0daryo/monkey
     environment:
       GOPATH: /
       GOCACHE: /.cache/go-build
