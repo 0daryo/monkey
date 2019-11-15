@@ -1,4 +1,13 @@
 version: 2.1
+executors:
+  default:
+    docker:
+      - image: golang:1.13
+    working_directory: /go/src/github.com/0daryo/monkey
+    environment:
+      GOPATH: /
+      GOCACHE: /.cache/go-build
+      GO111MODULE: "on"
 commands:
   go_mod_download:
     steps:
@@ -17,25 +26,13 @@ commands:
 
 jobs:
   build:
-    docker:
-      - image: golang:1.13
-    working_directory: /go/src/github.com/0daryo/monkey
-    environment:
-      GOPATH: /
-      GOCACHE: /.cache/go-build
-      GO111MODULE: "on"
     executor: default
     steps:
       - checkout
+      - checkout
       - go_mod_download
   lint:
-    docker:
-      - image: golang:1.13
-    working_directory: /go/src/github.com/0daryo/monkey
-    environment:
-      GOPATH: /
-      GOCACHE: /.cache/go-build
-      GO111MODULE: "on"
+    executor: default
     steps:
       - checkout
       - go_mod_download
@@ -48,14 +45,9 @@ jobs:
           name: Run GolangCI-Lint
           command: ./bin/golangci-lint run --issues-exit-code 0 --out-format checkstyle
   test:
-    docker:
-      - image: golang:1.13
-    working_directory: /go/src/github.com/0daryo/monkey
-    environment:
-      GOPATH: /
-      GOCACHE: /.cache/go-build
-      GO111MODULE: "on"
+    executor: default
     steps:
+      - checkout
       - run:
           name: Run Tests
           command: go test -race -v ./...
