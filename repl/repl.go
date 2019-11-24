@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/0daryo/monkey/evaluator"
 	"github.com/0daryo/monkey/lexer"
 	"github.com/0daryo/monkey/parser"
 )
 
-const PROMPT = "heyyy "
+const PROMPT = "type >>"
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
@@ -30,8 +31,11 @@ func Start(in io.Reader, out io.Writer) {
 			printParserErrors(out, p.Errors())
 			continue
 		}
-		io.WriteString(out, program.String())
-		io.WriteString(out, "\n")
+		evaluated := evaluator.Eval(program)
+		if evaluated != nil {
+			io.WriteString(out, evaluated.Inspect())
+			io.WriteString(out, "\n")
+		}
 	}
 }
 
