@@ -225,9 +225,6 @@ func (p *Parser) ParseProgram() *ast.Program {
 		}
 		p.nextToken()
 	}
-	fmt.Println(111111111111)
-	fmt.Printf("%+v", program.Statements)
-	fmt.Println(22222222222)
 	return program
 }
 
@@ -254,7 +251,8 @@ func (p *Parser) parseLetStatement() *ast.LetStatement {
 	p.nextToken()
 	stmt.Value = p.parseExpression(LOWEST)
 
-	for !p.curTokenIs(token.SEMICOLON) {
+	// TODO: understand
+	for p.curTokenIs(token.SEMICOLON) {
 		p.nextToken()
 	}
 	return stmt

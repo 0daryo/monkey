@@ -527,14 +527,8 @@ func TestFunctionLiteralParsing(t *testing.T) {
 
 	l := lexer.New(input)
 	p := New(l)
-	fmt.Println(1111111111)
-	fmt.Println(p)
-	fmt.Println(1111111111)
 	program := p.ParseProgram()
 	checkParserErrors(t, p)
-	fmt.Println(1111111111)
-	fmt.Println(program)
-	fmt.Println(1111111111)
 	if len(program.Statements) != 1 {
 		t.Fatalf("program.Body does not contain %d statements. got=%d\n",
 			1, len(program.Statements))
