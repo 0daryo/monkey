@@ -533,14 +533,12 @@ func TestFunctionLiteralParsing(t *testing.T) {
 		t.Fatalf("program.Body does not contain %d statements. got=%d\n",
 			1, len(program.Statements))
 	}
-	fmt.Printf("program %+v\n", program)
 
 	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
 		t.Fatalf("program.Statements[0] is not ast.ExpressionStatement. got=%T",
 			program.Statements[0])
 	}
-	fmt.Printf("stmt %+v\n", stmt)
 
 	function, ok := stmt.Expression.(*ast.FunctionLiteral)
 	if !ok {

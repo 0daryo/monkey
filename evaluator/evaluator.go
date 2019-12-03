@@ -1,8 +1,9 @@
 package evaluator
 
-import "github.com/0daryo/monkey/object"
-
-import "github.com/0daryo/monkey/ast"
+import (
+	"github.com/0daryo/monkey/ast"
+	"github.com/0daryo/monkey/object"
+)
 
 var (
 	NULL  = &object.Null{}
@@ -18,7 +19,7 @@ func Eval(node ast.Node) object.Object {
 	case *ast.Program:
 		return evalProgram(node)
 	case *ast.BlockStatement:
-		return evalBlockStatements(node)
+		return evalBlockStatement(node)
 	case *ast.IfExpression:
 		return evalIfExpression(node)
 	case *ast.ExpressionStatement:
@@ -55,7 +56,7 @@ func evalProgram(program *ast.Program) object.Object {
 	for _, statement := range program.Statements {
 		result = Eval(statement)
 		if returnValue, ok := result.(*object.ReturnValue); ok {
-			return returnValue
+			return returnValue.Value
 		}
 	}
 	return result
