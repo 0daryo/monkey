@@ -1,7 +1,7 @@
 name: ci
 on: [push]
 jobs:
-  lint:
+  reviewdog_lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
