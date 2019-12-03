@@ -1,21 +1,16 @@
 name: ci
 on: [push]
 jobs:
-  build:
+  lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - name: set up
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.13
-        id: go
       - name: checkout
         uses: actions/checkout@v1
-      - name: install lint
-        run: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.18.0
-      - name: lint
-        run: ./bin/golangci-lint run
+      - name: reviewdog_golang-ci_lint
+        uses: reviewdog/action-golangci-lint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
 
   test:
     name: test
