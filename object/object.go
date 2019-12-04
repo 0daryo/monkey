@@ -1,8 +1,6 @@
 package object
 
-import (
-	"fmt"
-)
+import "fmt"
 
 const (
 	INTEGER_OBJ         = "INTEGER"
