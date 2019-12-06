@@ -15,14 +15,13 @@ const PROMPT = "type >>"
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
-
+	env := object.NewEnvironment()
 	for {
 		fmt.Printf(PROMPT) // nolint: staticcheck
 		scanned := scanner.Scan()
 		if !scanned {
 			return
 		}
-		env := object.NewEnvironment()
 
 		line := scanner.Text()
 		l := lexer.New(line)
