@@ -15,7 +15,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "monkey",
 	Short: "interpreter",
-	Long: `interprete txt file`,
+	Long:  `interprete txt file`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//  Run: func(cmd *cobra.Command, args []string) { },
