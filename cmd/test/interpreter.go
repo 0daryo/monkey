@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"flag"
@@ -13,7 +13,7 @@ import (
 	"github.com/0daryo/monkey/parser"
 )
 
-func main() {
+func Interprete() {
 	flag.Parse()
 	// ファイルをOpenする
 	f, err := os.Open(flag.Arg(0))

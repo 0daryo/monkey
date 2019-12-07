@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"github.com/0daryo/monkey/repl"
 )
 
-func main() {
+func Exec() {
 	user, err := user.Current()
 	if err != nil {
 		panic(err)
